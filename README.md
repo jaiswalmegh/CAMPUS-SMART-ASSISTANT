@@ -65,7 +65,7 @@ Smart-Campus-main/
 
 🛠️ Technologies Used
 
-Java Swing (GUI)
+Java FX (GUI)
 
 JDBC (Database connectivity)
 
@@ -90,6 +90,36 @@ Java Swing (GUI)
 JDBC (Database connectivity)
 
 MySQL
+
+👤 Users Table
+
+Stores login credentials and role information
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('STUDENT', 'FACULTY', 'ADMIN') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+🎓 Students Table
+
+Stores academic and personal information of students.
+
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    admission_no VARCHAR(30) UNIQUE NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    course VARCHAR(50),
+    semester INT,
+    year INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
 
 NetBeans / IntelliJ / Eclipse
 
